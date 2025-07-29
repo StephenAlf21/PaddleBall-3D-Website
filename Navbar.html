@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Navbar</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">YourLogo</div>
+    <ul>
+      <li><a href="#home" data-scroll="home">Home</a></li>
+      <li><a href="#about" data-scroll="about">About</a></li>
+      <li><a href="#services" data-scroll="services">Services</a></li>
+      <li><a href="#contact" data-scroll="contact">Contact</a></li>
+    </ul>
+    <div id="mobile-menu" class="menu-toggle">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Welcome to Our Website</h1>
+      <p>Discover amazing features and responsive design.</p>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2>About Us</h2>
+    <p>Learn more about what we do.</p>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services">
+    <h2>Our Services</h2>
+    <p>Explore the services we offer.</p>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Get in touch with us.</p>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing">
+    <h2>Pricing</h2>
+    <label for="country">Choose your country:</label>
+    <select id="country">
+      <option value="us" data-currency="USD$" data-tax="0.07">United States</option>
+      <option value="uk" data-currency="£" data-tax="0.20">United Kingdom</option>
+      <option value="eu" data-currency="€" data-tax="0.15">European Union</option>
+    </select>
+    <div id="price">USD$19.99</div>
+  </section>
