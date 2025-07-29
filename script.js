@@ -1,43 +1,52 @@
 // Navbar Mobile Toggle
 const mobileMenu = document.getElementById('mobile-menu');
 
-mobileMenu.addEventListener('click', () => {
-    // Create or toggle side menu container
-    let sideMenu = document.querySelector('.side-menu');
-    if (!sideMenu) {
-        sideMenu = document.createElement('div');
-        sideMenu.classList.add('side-menu');
-        sideMenu.innerHTML = `
-            <div class="side-menu-overlay"></div>
-            <div class="side-menu-content">
-                <ul class="side-nav-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="screenshots.html">Screenshots</a></li>
-                    <li><a href="requirements.html">Requirements</a></li>
-                    <li><a href="reviews.html">Reviews</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="store.html">Store</a></li>
-                </ul>
-                <button class="close-side-menu">Close</button>
-            </div>
-        `;
-        document.body.appendChild(sideMenu);
+if (mobileMenu) {
+    mobileMenu.addEventListener('click', () => {
+        const navLinks = document.getElementById('nav-links');
 
-        // Close side menu functionality
-        const closeSideMenu = sideMenu.querySelector('.close-side-menu');
-        const sideMenuOverlay = sideMenu.querySelector('.side-menu-overlay');
+        // Simple toggle when nav links exist
+        if (navLinks) {
+            navLinks.classList.toggle('active');
+            return;
+        }
 
-        closeSideMenu.addEventListener('click', () => {
-            sideMenu.classList.remove('active');
-        });
+        // Fallback side menu for pages without inline nav links
+        let sideMenu = document.querySelector('.side-menu');
+        if (!sideMenu) {
+            sideMenu = document.createElement('div');
+            sideMenu.classList.add('side-menu');
+            sideMenu.innerHTML = `
+                <div class="side-menu-overlay"></div>
+                <div class="side-menu-content">
+                    <ul class="side-nav-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="screenshots.html">Screenshots</a></li>
+                        <li><a href="requirements.html">Requirements</a></li>
+                        <li><a href="reviews.html">Reviews</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="store.html">Store</a></li>
+                    </ul>
+                    <button class="close-side-menu">Close</button>
+                </div>
+            `;
+            document.body.appendChild(sideMenu);
 
-        sideMenuOverlay.addEventListener('click', () => {
-            sideMenu.classList.remove('active');
-        });
-    }
-    sideMenu.classList.toggle('active');
-});
+            const closeSideMenu = sideMenu.querySelector('.close-side-menu');
+            const sideMenuOverlay = sideMenu.querySelector('.side-menu-overlay');
+
+            closeSideMenu.addEventListener('click', () => {
+                sideMenu.classList.remove('active');
+            });
+
+            sideMenuOverlay.addEventListener('click', () => {
+                sideMenu.classList.remove('active');
+            });
+        }
+        sideMenu.classList.toggle('active');
+    });
+}
 
 // Smooth Scroll Function
 function scrollToSection(event, sectionId) {
