@@ -187,14 +187,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         faqs.forEach(faq => {
             const faqElement = document.createElement('div');
-            faqElement.className = 'bg-gray-800 rounded-lg overflow-hidden';
+            faqElement.className = 'bg-gray-800 rounded-lg overflow-hidden transition-all duration-300';
             faqElement.innerHTML = `
-                <button class="w-full text-left p-4 font-bold text-lg flex justify-between items-center faq-question">
+                <button class="w-full text-left p-4 font-bold text-lg flex justify-between items-center faq-question hover:bg-gray-700 transition-colors">
                     <span>${faq.q}</span>
-                    <i class="fas fa-chevron-down transition-transform"></i>
+                    <i class="fas fa-chevron-down transition-transform duration-300"></i>
                 </button>
-                <div class="p-4 bg-gray-900 text-gray-300 hidden faq-answer">
-                    ${faq.a}
+                <div class="faq-answer-content h-0 opacity-0">
+                    <div class="p-4 pt-0 text-gray-300">
+                        ${faq.a}
+                    </div>
                 </div>
             `;
             faqContainer.appendChild(faqElement);
@@ -203,30 +205,46 @@ document.addEventListener('DOMContentLoaded', () => {
         faqContainer.addEventListener('click', (e) => {
             const question = e.target.closest('.faq-question');
             if (question) {
-                const answer = question.nextElementSibling;
+                const answerContent = question.nextElementSibling;
                 const icon = question.querySelector('i');
-                const isVisible = !answer.classList.contains('hidden');
+                const isVisible = answerContent.classList.contains('is-visible');
 
-                anime({
-                    targets: answer,
-                    height: isVisible ? 0 : [0, answer.scrollHeight],
-                    opacity: isVisible ? 0 : 1,
-                    duration: 300,
-                    easing: 'easeOutQuad',
-                    begin: () => {
-                        if (!isVisible) answer.classList.remove('hidden');
-                    },
-                    complete: () => {
-                        if (isVisible) answer.classList.add('hidden');
+                // Close all other answers
+                document.querySelectorAll('.faq-answer-content.is-visible').forEach(openAnswer => {
+                    if(openAnswer !== answerContent) {
+                        anime({
+                            targets: openAnswer,
+                            height: 0,
+                            opacity: [1, 0],
+                            duration: 300,
+                            easing: 'easeOutQuad',
+                        });
+                        openAnswer.classList.remove('is-visible');
+                        openAnswer.previousElementSibling.querySelector('i').style.transform = 'rotate(0deg)';
                     }
                 });
 
-                anime({
-                    targets: icon,
-                    rotate: isVisible ? 0 : 180,
-                    duration: 300,
-                    easing: 'easeOutQuad'
-                });
+                if (isVisible) {
+                    anime({
+                        targets: answerContent,
+                        height: 0,
+                        opacity: [1, 0],
+                        duration: 300,
+                        easing: 'easeOutQuad',
+                    });
+                    answerContent.classList.remove('is-visible');
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                     anime({
+                        targets: answerContent,
+                        height: answerContent.scrollHeight,
+                        opacity: [0, 1],
+                        duration: 300,
+                        easing: 'easeOutQuad',
+                    });
+                    answerContent.classList.add('is-visible');
+                    icon.style.transform = 'rotate(180deg)';
+                }
             }
         });
     }
