@@ -174,4 +174,100 @@ document.addEventListener('DOMContentLoaded', () => {
             topReviews.forEach(review => cartReviewsList.appendChild(createReviewCard(review, true)));
         }
     }
+
+    // --- Support Page Logic ---
+    const faqContainer = document.getElementById('faq-container');
+    if (faqContainer) {
+        const faqs = [
+            { q: "What are the minimum system requirements?", a: "You'll need at least an Intel i5 processor, 2GB of RAM, and a GTX 1050 Ti. Check the full list on our <a href='Requirements.html' class='text-secondary hover:underline'>Requirements</a> page." },
+            { q: "How do I play multiplayer?", a: "From the main menu, select 'Multiplayer'. You can choose 'Local' to play on the same computer or 'Online' to challenge players over the internet." },
+            { q: "Where can I customize my paddle?", a: "You can unlock and equip new skins and effects in the 'Special Modes' section of the main menu." },
+            { q: "Is there controller support?", a: "Yes, Paddle Ball 3D has full controller support. We recommend it for the best experience!" }
+        ];
+
+        faqs.forEach(faq => {
+            const faqElement = document.createElement('div');
+            faqElement.className = 'bg-gray-800 rounded-lg overflow-hidden';
+            faqElement.innerHTML = `
+                <button class="w-full text-left p-4 font-bold text-lg flex justify-between items-center faq-question">
+                    <span>${faq.q}</span>
+                    <i class="fas fa-chevron-down transition-transform"></i>
+                </button>
+                <div class="p-4 bg-gray-900 text-gray-300 hidden faq-answer">
+                    ${faq.a}
+                </div>
+            `;
+            faqContainer.appendChild(faqElement);
+        });
+
+        faqContainer.addEventListener('click', (e) => {
+            const question = e.target.closest('.faq-question');
+            if (question) {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+                const isVisible = !answer.classList.contains('hidden');
+
+                anime({
+                    targets: answer,
+                    height: isVisible ? 0 : [0, answer.scrollHeight],
+                    opacity: isVisible ? 0 : 1,
+                    duration: 300,
+                    easing: 'easeOutQuad',
+                    begin: () => {
+                        if (!isVisible) answer.classList.remove('hidden');
+                    },
+                    complete: () => {
+                        if (isVisible) answer.classList.add('hidden');
+                    }
+                });
+
+                anime({
+                    targets: icon,
+                    rotate: isVisible ? 0 : 180,
+                    duration: 300,
+                    easing: 'easeOutQuad'
+                });
+            }
+        });
+    }
+
+    // --- Support Modal Logic ---
+    const openModalBtn = document.getElementById('open-support-modal-btn');
+    const closeModalBtn = document.getElementById('close-support-modal-btn');
+    const supportModal = document.getElementById('support-modal');
+    const supportModalContent = document.getElementById('support-modal-content');
+
+    if (openModalBtn && supportModal) {
+        openModalBtn.addEventListener('click', () => {
+            supportModal.classList.remove('hidden');
+            anime({
+                targets: supportModalContent,
+                scale: [0.95, 1],
+                opacity: [0, 1],
+                duration: 300,
+                easing: 'easeOutQuad'
+            });
+        });
+    }
+
+    if (closeModalBtn && supportModal) {
+        const closeModal = () => {
+            anime({
+                targets: supportModalContent,
+                scale: [1, 0.95],
+                opacity: [1, 0],
+                duration: 300,
+                easing: 'easeInQuad',
+                complete: () => {
+                    supportModal.classList.add('hidden');
+                }
+            });
+        };
+        closeModalBtn.addEventListener('click', closeModal);
+        supportModal.addEventListener('click', (e) => {
+            if (e.target === supportModal) {
+                closeModal();
+            }
+        });
+    }
 });
