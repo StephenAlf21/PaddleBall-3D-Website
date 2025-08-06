@@ -1,5 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // --- Anime.js Page Load Animation ---
+    const fadeInSections = document.querySelectorAll('.fade-in-section');
+    if (fadeInSections.length > 0) {
+        anime({
+            targets: '.fade-in-section',
+            opacity: [0, 1],
+            translateY: [20, 0],
+            delay: anime.stagger(200, {start: 300}),
+            duration: 800,
+            easing: 'easeOutExpo'
+        });
+    }
+
     // --- Mobile Menu Toggle ---
     const mobileMenuButton = document.getElementById('mobile-menu');
     const navLinks = document.getElementById('nav-links');
@@ -75,32 +88,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const getReviews = () => JSON.parse(localStorage.getItem('paddleBallReviews')) || [];
     const saveReviews = (reviews) => localStorage.setItem('paddleBallReviews', JSON.stringify(reviews));
 
-    // Function to create a review card element
     const createReviewCard = (review, isMini = false) => {
         const reviewElement = document.createElement('div');
         reviewElement.className = 'bg-gray-800 p-6 rounded-lg border border-gray relative';
         if (isMini) {
             reviewElement.className = 'bg-gray-900 p-4 rounded-lg border border-gray';
         }
-
         let stars = '';
         for (let i = 0; i < 5; i++) {
             stars += `<i class="fas fa-star ${i < review.rating ? 'text-yellow-400' : 'text-gray-600'}"></i>`;
         }
-        
         reviewElement.innerHTML = `
             ${!isMini ? `<button class="absolute top-3 right-3 text-gray-500 hover:text-red-500 delete-review-btn" data-id="${review.id}" title="Delete Review"><i class="fas fa-trash"></i></button>` : ''}
-            <div class="flex items-center mb-2">
-                <h3 class="font-orbitron text-xl font-bold">${review.name}</h3>
-                <div class="ml-auto text-lg">${stars}</div>
-            </div>
+            <div class="flex items-center mb-2"><h3 class="font-orbitron text-xl font-bold">${review.name}</h3><div class="ml-auto text-lg">${stars}</div></div>
             <p class="text-gray-300 italic">"${review.text}"</p>
             ${!isMini ? `<p class="text-xs text-gray-500 mt-4">${new Date(review.date).toLocaleDateString()}</p>`: ''}
         `;
         return reviewElement;
     };
 
-    // 1. Full Reviews Page Logic
     const reviewsList = document.getElementById('reviews-list');
     const noReviewsMessage = document.getElementById('no-reviews');
     const reviewForm = document.getElementById('review-form');
@@ -116,7 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 reviews.forEach(review => reviewsList.appendChild(createReviewCard(review)));
             }
         };
-
         if (reviewForm) {
             reviewForm.addEventListener('submit', (e) => {
                 e.preventDefault();
@@ -128,7 +133,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 displayFullReviews();
             });
         }
-
         reviewsList.addEventListener('click', (e) => {
             const deleteButton = e.target.closest('.delete-review-btn');
             if (deleteButton) {
@@ -144,7 +148,6 @@ document.addEventListener('DOMContentLoaded', () => {
         displayFullReviews();
     }
 
-    // 2. Store Page Reviews Preview
     const storeReviewsList = document.getElementById('store-reviews-list');
     const noStoreReviewsMessage = document.getElementById('no-store-reviews');
     if (storeReviewsList) {
@@ -154,12 +157,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (noStoreReviewsMessage) noStoreReviewsMessage.style.display = 'block';
         } else {
             if (noStoreReviewsMessage) noStoreReviewsMessage.style.display = 'none';
-            // Show up to 2 reviews
             reviews.slice(0, 2).forEach(review => storeReviewsList.appendChild(createReviewCard(review, true)));
         }
     }
 
-    // 3. Cart Page Reviews Preview
     const cartReviewsList = document.getElementById('cart-reviews-list');
     const noCartReviewsMessage = document.getElementById('no-cart-reviews');
     if (cartReviewsList) {
@@ -169,7 +170,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (noCartReviewsMessage) noCartReviewsMessage.style.display = 'block';
         } else {
             if (noCartReviewsMessage) noCartReviewsMessage.style.display = 'none';
-            // Show up to 3 top-rated reviews
             const topReviews = reviews.sort((a, b) => b.rating - a.rating).slice(0, 3);
             topReviews.forEach(review => cartReviewsList.appendChild(createReviewCard(review, true)));
         }
