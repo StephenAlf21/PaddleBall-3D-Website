@@ -1,250 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shopping Cart - Paddle Ball 3D</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Orbitron:wght@500;700&display=swap">
-  <style>
-    :root {
-      --primary: #0066ff;
-      --primary-dark: #0052cc;
-      --secondary: #ff6b00;
-      --secondary-dark: #e67e22;
-      --dark: #121212;
-      --light: #f8f9fa;
-      --gray: #2d2d2d;
-      --success: #28a745;
-    }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Montserrat', sans-serif;
-      line-height: 1.6;
-      color: var(--light);
-      background: linear-gradient(135deg, var(--dark) 0%, var(--gray) 100%);
-      min-height: 100vh;
-    }
-    h1, h2, h3, h4 {
-      font-family: 'Orbitron', sans-serif;
-      letter-spacing: 1px;
-    }
-    a {
-      text-decoration: none;
-      color: inherit;
-      transition: all 0.3s ease;
-    }
-    /* Navbar */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: rgba(0, 0, 0, 0.8);
-      padding: 1.5rem 2rem;
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 1000;
-      backdrop-filter: blur(10px);
-    }
-    .logo {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--primary);
-      text-shadow: 0 0 10px rgba(0, 102, 255, 0.5);
-    }
-    .logo span {
-      color: var(--secondary);
-    }
-    .navbar ul {
-      list-style: none;
-      display: flex;
-      gap: 2rem;
-    }
-    .navbar a {
-      color: var(--light);
-      font-weight: 600;
-      position: relative;
-      padding: 0.5rem 0;
-    }
-    .navbar a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background-color: var(--secondary);
-      transition: width 0.3s ease;
-    }
-    .navbar a:hover::after {
-      width: 100%;
-    }
-    .menu-toggle {
-      display: none;
-      cursor: pointer;
-      font-size: 1.5rem;
-    }
-    @media (max-width: 768px) {
-      .navbar ul {
-        position: fixed;
-        top: 80px;
-        left: -100%;
-        width: 100%;
-        height: calc(100vh - 80px);
-        background: var(--dark);
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 3rem;
-        transition: left 0.5s ease;
-      }
-      .navbar ul.active {
-        left: 0;
-      }
-      .menu-toggle {
-        display: block;
-      }
-    }
-    /* Section Styles */
-    section {
-      padding: 6rem 2rem;
-      margin-top: 80px;
-    }
-    .section-title {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-      position: relative;
-    }
-    .section-title::after {
-      content: '';
-      display: block;
-      width: 80px;
-      height: 4px;
-      background: linear-gradient(to right, var(--primary), var(--secondary));
-      margin: 1rem auto;
-      border-radius: 2px;
-    }
-    /* Cart Container */
-    .cart-container {
-      background: rgba(30, 30, 30, 0.8);
-      border-radius: 15px;
-      padding: 3rem;
-      max-width: 800px;
-      margin: 0 auto;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(5px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      text-align: center;
-    }
-    .cart-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #fff;
-      padding: 1rem 0;
-    }
-    .cart-item:last-child {
-      border-bottom: none;
-    }
-    .cart-item h3 {
-      font-size: 1.5rem;
-    }
-    .cart-total {
-      text-align: right;
-      font-size: 1.5rem;
-      margin-top: 2rem;
-    }
-    .checkout-button {
-      padding: 1rem 2rem;
-      background-color: var(--secondary);
-      border: none;
-      color: #fff;
-      font-size: 1.2rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background 0.3s;
-      border-radius: 5px;
-      display: block;
-      margin: 2rem auto;
-      text-align: center;
-      text-decoration: none;
-    }
-    .checkout-button:hover {
-      background-color: var(--secondary-dark);
-    }
-    .country-selector {
-      margin-top: 1rem;
-      text-align: center;
-    }
-    select {
-      padding: 0.5rem;
-      border-radius: 5px;
-      border: none;
-      font-family: 'Montserrat', sans-serif;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - Paddle Ball 3D</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Custom Tailwind configuration
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Montserrat', 'sans-serif'],
+                        'orbitron': ['Orbitron', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#0066ff',
+                        'primary-dark': '#0052cc',
+                        secondary: '#ff6b00',
+                        'secondary-dark': '#e05e00',
+                        dark: '#121212',
+                        light: '#f8f9fa',
+                        gray: {
+                            DEFAULT: '#2d2d2d',
+                            '800': '#1f1f1f',
+                            '900': '#121212'
+                        },
+                        paypal: '#00457C'
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="logo">Paddle <span>Ball 3D</span></div>
-    <ul id="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="screenshots.html">Screenshots</a></li>
-      <li><a href="requirements.html">Requirements</a></li>
-      <li><a href="reviews.html">Reviews</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="store.html">Store</a></li>
-    </ul>
-    <div class="menu-toggle" id="mobile-menu">
-      <i class="fas fa-bars"></i>
-    </div>
-  </nav>
-  
-  <!-- Cart Section -->
-  <section id="cart">
-    <h2 class="section-title">Your Shopping Cart</h2>
-    <div class="cart-container">
-      <div class="cart-item">
-        <h3>Paddle Ball 3D</h3>
-        <span id="price">Price: $19.99</span>
-      </div>
-      <div class="country-selector">
-        <label for="country">Select Your Country:</label>
-        <select id="country">
-          <option value="us" data-currency="$" data-tax="0.06">United States</option>
-          <option value="ca" data-currency="CAD$" data-tax="0.13">Canada</option>
-          <option value="uk" data-currency="£" data-tax="0.20">United Kingdom</option>
-          <option value="eu" data-currency="€" data-tax="0.21">European Union</option>
-        </select>
-      </div>
-      <div class="cart-total" id="cart-total">
-        Total: $19.99
-      </div>
-      <a href="checkout.html" class="checkout-button">Proceed to Checkout</a>
-    </div>
-  </section>
-  
-  <script>
-    // Update cart total based on selected country
-    document.getElementById('country').addEventListener('change', function() {
-      const selectedCountry = this.options[this.selectedIndex];
-      const currency = selectedCountry.getAttribute('data-currency');
-      const taxRate = parseFloat(selectedCountry.getAttribute('data-tax'));
-      const basePrice = 19.99;
-      const totalPrice = (basePrice * (1 + taxRate)).toFixed(2);
-  
-      document.getElementById('cart-total').innerText = `Total: ${currency}${totalPrice}`;
-      document.getElementById('price').innerText = `Price: ${currency}${basePrice}`;
-    });
-  </script>
+<body class="bg-dark text-light font-sans">
+
+    <!-- Header/Navbar -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-gray-900/80 backdrop-blur-sm border-b border-gray">
+        <div class="container mx-auto flex justify-between items-center p-4">
+            <div class="font-orbitron text-2xl font-bold">
+                <a href="index.html" class="text-primary">Paddle <span class="text-secondary">Ball 3D</span></a>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="index.html" class="hover:text-secondary">Home</a>
+                <a href="about.html" class="hover:text-secondary">About</a>
+                <a href="Store.html" class="hover:text-secondary">Store</a>
+                <a href="Requirements.html" class="hover:text-secondary">Requirements</a>
+                <a href="Reviews.html" class="hover:text-secondary">Reviews</a>
+                <a href="contact.html" class="hover:text-secondary">Contact</a>
+            </nav>
+            <button id="mobile-menu" class="md:hidden"><i class="fas fa-bars text-2xl"></i></button>
+        </div>
+        <div id="nav-links" class="hidden md:hidden bg-gray-900">
+             <a href="index.html" class="block text-center py-4 text-lg hover:bg-primary">Home</a>
+             <a href="about.html" class="block text-center py-4 text-lg hover:bg-primary">About</a>
+             <a href="Store.html" class="block text-center py-4 text-lg hover:bg-primary">Store</a>
+             <a href="Requirements.html" class="block text-center py-4 text-lg hover:bg-primary">Requirements</a>
+             <a href="Reviews.html" class="block text-center py-4 text-lg hover:bg-primary">Reviews</a>
+             <a href="contact.html" class="block text-center py-4 text-lg hover:bg-primary">Contact</a>
+        </div>
+    </header>
+
+    <main class="pt-16">
+        <section class="bg-gray-900 py-12">
+            <div class="container mx-auto text-center">
+                <h1 class="font-orbitron text-5xl font-bold text-light">Your Cart</h1>
+                <p class="text-lg text-gray-400 mt-2">Finalize your order and choose your preferred way to pay.</p>
+            </div>
+        </section>
+
+        <section class="py-20">
+            <div class="container mx-auto px-4 grid lg:grid-cols-3 gap-12">
+                <!-- Order Summary -->
+                <div class="lg:col-span-2">
+                    <div class="bg-gray-800 p-8 rounded-lg shadow-2xl">
+                        <h2 class="font-orbitron text-3xl font-bold mb-6">Order Summary</h2>
+                        <div class="flex justify-between items-center border-b border-gray pb-4">
+                            <div class="flex items-center">
+                                <img src="https://placehold.co/80x60/121212/ff6b00?text=PB3D" alt="Paddle Ball 3D" class="rounded-md">
+                                <span class="font-bold text-xl ml-4">Paddle Ball 3D</span>
+                            </div>
+                            <span id="base-price" class="font-bold text-xl">$19.99</span>
+                        </div>
+                        <div class="py-4 border-b border-gray space-y-4">
+                            <div class="flex justify-between items-center">
+                                <label for="country" class="text-gray-300">Region for Tax:</label>
+                                <select id="country" name="country" class="bg-gray-900 border border-gray rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary">
+                                    <option value="us" data-currency="$" data-tax="0.06">United States</option>
+                                    <option value="ca" data-currency="CAD" data-tax="0.15">Canada</option>
+                                    <option value="uk" data-currency="£" data-tax="0.20">United Kingdom</option>
+                                    <option value="eu" data-currency="€" data-tax="0.21">European Union</option>
+                                    <option value="other" data-currency="$" data-tax="0">Other</option>
+                                </select>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-300">Tax</span>
+                                <span id="tax-amount" class="text-gray-300">$1.20</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center pt-4 font-bold text-2xl">
+                            <span class="font-orbitron">Total</span>
+                            <span id="total-price" class="text-secondary">$21.19</span>
+                        </div>
+                        <div class="mt-8 pt-6 border-t border-gray">
+                            <h3 class="font-orbitron text-2xl font-bold text-center mb-6">Proceed to Checkout</h3>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <a href="checkout.html" id="paypal-link" class="block bg-paypal hover:opacity-90 text-white font-bold py-4 px-6 rounded-lg text-lg text-center transition-opacity"><i class="fab fa-paypal mr-2"></i> Pay with PayPal</a>
+                                <a href="https://stephen31.itch.io/paddle-ball-3d" target="_blank" class="block bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-6 rounded-lg text-lg text-center transition-colors"><i class="fas fa-gamepad mr-2"></i> View on Itch.io</a>
+                            </div>
+                            <p class="text-xs text-gray-500 text-center mt-4">You will be redirected to a secure, external payment processor.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Player Reviews Section -->
+                <div class="lg:col-span-1">
+                    <div class="bg-gray-800 p-8 rounded-lg sticky top-24">
+                        <h3 class="font-orbitron text-2xl font-bold mb-6 text-center">Player Reviews</h3>
+                        <div id="cart-reviews-list" class="space-y-4">
+                             <!-- Cart reviews will be dynamically inserted here -->
+                            <p id="no-cart-reviews" class="text-gray-400 text-center">No reviews yet.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 border-t border-gray py-8">
+        <div class="container mx-auto text-center text-gray-400">
+            <p class="text-gray-500 text-sm">© 2024 Paddle Ball 3D. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
