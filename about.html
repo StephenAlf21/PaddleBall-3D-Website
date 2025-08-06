@@ -134,7 +134,38 @@
                 </div>
             </div>
         </section>
+        
+        <!-- Other Projects Section -->
+        <section class="py-20 bg-gray-900 text-center fade-in-section">
+            <div class="container mx-auto px-4">
+                <h2 class="font-orbitron text-4xl font-bold mb-4">Our Other Projects</h2>
+                <p class="text-gray-300 text-lg max-w-2xl mx-auto mb-8">Check out some of the other projects we've been working on.</p>
+                <button id="open-projects-modal-btn" class="bg-primary hover:bg-primary-dark text-white font-bold py-3 px-8 rounded-full text-lg transition-transform duration-300 hover:scale-105">
+                    View Projects
+                </button>
+            </div>
+        </section>
     </main>
+
+    <!-- Other Projects Modal -->
+    <div id="projects-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
+        <div id="projects-modal-content" class="bg-gray-800 p-8 rounded-lg shadow-2xl max-w-lg w-full transform scale-95 opacity-0">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="font-orbitron text-3xl font-bold">Our Other Projects</h2>
+                <button id="close-projects-modal-btn" class="text-gray-400 hover:text-white text-2xl">&times;</button>
+            </div>
+            <div class="space-y-4">
+                <a href="https://stephenalf21.github.io/AuraSync-X/index.html" target="_blank" class="block bg-gray-900 hover:bg-gray-700 p-4 rounded-lg transition-colors">
+                    <h3 class="font-orbitron text-xl font-bold text-primary">AuraSync X</h3>
+                    <p class="text-gray-400">Visualize your music with a stunning 3D particle engine, or kick back with our sleek video player. Your personal media hub awaits.</p>
+                </a>
+                <a href="https://stephenalf21.github.io/FinancialCalculator.github.io/" target="_blank" class="block bg-gray-900 hover:bg-gray-700 p-4 rounded-lg transition-colors">
+                    <h3 class="font-orbitron text-xl font-bold text-secondary">Financial Calculator & Music Player</h3>
+                    <p class="text-gray-400">A versatile tool with an interactive audio visualizer and a full suite for financial planning.</p>
+                </a>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="bg-gray-900 border-t border-gray py-8">
