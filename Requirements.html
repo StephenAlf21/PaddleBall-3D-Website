@@ -1,205 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>System Requirements - Paddle Ball 3D</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Orbitron:wght@500;700&display=swap">
-  <style>
-    :root {
-      --primary: #0066ff;
-      --primary-dark: #0052cc;
-      --secondary: #ff6b00;
-      --secondary-dark: #e67e22;
-      --dark: #121212;
-      --light: #f8f9fa;
-      --gray: #2d2d2d;
-      --success: #28a745;
-    }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Montserrat', sans-serif;
-      line-height: 1.6;
-      color: var(--light);
-      background: linear-gradient(135deg, var(--dark) 0%, var(--gray) 100%);
-      min-height: 100vh;
-    }
-    h1, h2, h3, h4 {
-      font-family: 'Orbitron', sans-serif;
-      letter-spacing: 1px;
-    }
-    a {
-      text-decoration: none;
-      color: inherit;
-      transition: all 0.3s ease;
-    }
-    /* Navbar */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: rgba(0, 0, 0, 0.8);
-      padding: 1.5rem 2rem;
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 1000;
-      backdrop-filter: blur(10px);
-    }
-    .logo {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--primary);
-      text-shadow: 0 0 10px rgba(0, 102, 255, 0.5);
-    }
-    .logo span {
-      color: var(--secondary);
-    }
-    .navbar ul {
-      list-style: none;
-      display: flex;
-      gap: 2rem;
-    }
-    .navbar a {
-      color: var(--light);
-      font-weight: 600;
-      position: relative;
-      padding: 0.5rem 0;
-    }
-    .navbar a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background-color: var(--secondary);
-      transition: width 0.3s ease;
-    }
-    .navbar a:hover::after {
-      width: 100%;
-    }
-    .menu-toggle {
-      display: none;
-      cursor: pointer;
-      font-size: 1.5rem;
-    }
-    @media (max-width: 768px) {
-      .navbar ul {
-        position: fixed;
-        top: 80px;
-        left: -100%;
-        width: 100%;
-        height: calc(100vh - 80px);
-        background: var(--dark);
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 3rem;
-        transition: left 0.5s ease;
-      }
-      .navbar ul.active {
-        left: 0;
-      }
-      .menu-toggle {
-        display: block;
-      }
-    }
-    /* Section Styles */
-    section {
-      padding: 6rem 2rem;
-      margin-top: 80px;
-    }
-    .section-title {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-      position: relative;
-    }
-    .section-title::after {
-      content: '';
-      display: block;
-      width: 80px;
-      height: 4px;
-      background: linear-gradient(to right, var(--primary), var(--secondary));
-      margin: 1rem auto;
-      border-radius: 2px;
-    }
-    .requirements-container {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .requirement-box {
-      background: rgba(30, 30, 30, 0.8);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-      border-radius: 15px;
-      padding: 2rem;
-      flex: 1;
-      max-width: 350px;
-      min-width: 300px;
-    }
-    ul {
-      list-style: none;
-      padding-left: 0;
-    }
-    ul li {
-      margin-bottom: 0.5rem;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Requirements - Paddle Ball 3D</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Custom Tailwind configuration
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Montserrat', 'sans-serif'],
+                        'orbitron': ['Orbitron', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#0066ff',
+                        'primary-dark': '#0052cc',
+                        secondary: '#ff6b00',
+                        'secondary-dark': '#e05e00',
+                        dark: '#121212',
+                        light: '#f8f9fa',
+                        gray: {
+                            DEFAULT: '#2d2d2d',
+                            '800': '#1f1f1f',
+                            '900': '#121212'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="logo">Paddle <span>Ball 3D</span></div>
-    <ul id="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="screenshots.html">Screenshots</a></li>
-      <li><a href="requirements.html">Requirements</a></li>
-      <li><a href="reviews.html">Reviews</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="store.html">Store</a></li>
-    </ul>
-    <div class="menu-toggle" id="mobile-menu">
-      <i class="fas fa-bars"></i>
-    </div>
-  </nav>
-  
-  <!-- System Requirements Section -->
-  <section id="requirements">
-    <h2 class="section-title">System Requirements</h2>
-    <div class="requirements-container">
-      <div class="requirement-box">
-        <h3>Minimum</h3>
-        <ul>
-          <li>OS: Windows 10</li>
-          <li>Processor: Intel i5 6700 or AMD Ryzen 5 7640HS</li>
-          <li>Memory: 2 GB RAM</li>
-          <li>Graphics: NVIDIA GTX 1050 Ti</li>
-          <li>Storage: 2 GB available space</li>
-        </ul>
-      </div>
-      <div class="requirement-box">
-        <h3>Recommended</h3>
-        <ul>
-          <li>OS: Windows 11</li>
-          <li>Processor: Intel i7 11700k or AMD Ryzen 9600X</li>
-          <li>Memory: 4 GB RAM</li>
-          <li>Graphics: NVIDIA RTX 3080 or AMD Radeon RX 6800 XT</li>
-          <li>Storage: 2 GB available space</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+<body class="bg-dark text-light font-sans">
+
+    <!-- Header/Navbar -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-gray-900/80 backdrop-blur-sm border-b border-gray">
+        <div class="container mx-auto flex justify-between items-center p-4">
+            <div class="font-orbitron text-2xl font-bold">
+                <a href="index.html" class="text-primary">Paddle <span class="text-secondary">Ball 3D</span></a>
+            </div>
+            
+            <nav class="hidden md:flex space-x-8">
+                <a href="index.html" class="hover:text-secondary">Home</a>
+                <a href="about.html" class="hover:text-secondary">About</a>
+                <a href="Store.html" class="hover:text-secondary">Store</a>
+                <a href="Requirements.html" class="text-secondary font-bold">Requirements</a>
+                <a href="Reviews.html" class="hover:text-secondary">Reviews</a>
+                <a href="contact.html" class="hover:text-secondary">Contact</a>
+            </nav>
+
+            <button id="mobile-menu" class="md:hidden"><i class="fas fa-bars text-2xl"></i></button>
+        </div>
+        
+        <div id="nav-links" class="hidden md:hidden bg-gray-900">
+             <a href="index.html" class="block text-center py-4 text-lg hover:bg-primary">Home</a>
+             <a href="about.html" class="block text-center py-4 text-lg hover:bg-primary">About</a>
+             <a href="Store.html" class="block text-center py-4 text-lg hover:bg-primary">Store</a>
+             <a href="Requirements.html" class="block text-center py-4 text-lg bg-primary font-bold">Requirements</a>
+             <a href="Reviews.html" class="block text-center py-4 text-lg hover:bg-primary">Reviews</a>
+             <a href="contact.html" class="block text-center py-4 text-lg hover:bg-primary">Contact</a>
+        </div>
+    </header>
+
+    <main class="pt-16">
+        <section class="relative bg-gray-900 py-20 overflow-hidden">
+            <div id="p5-canvas-container" class="absolute top-0 left-0 w-full h-full z-0"></div>
+            <div class="container mx-auto text-center relative z-10">
+                <h1 class="font-orbitron text-5xl font-bold text-light">System Requirements</h1>
+                <p class="text-lg text-gray-400 mt-2">Check if your rig is ready for the arena.</p>
+            </div>
+        </section>
+
+        <section class="py-20">
+            <div class="container mx-auto px-4">
+                <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
+                    
+                    <div class="bg-gray-800 p-8 rounded-lg border-2 border-gray">
+                        <h2 class="font-orbitron text-3xl font-bold mb-6 text-primary">Minimum Specs</h2>
+                        <p class="text-gray-400 mb-6">For a stable experience at 1080p with low settings.</p>
+                        <ul class="space-y-4 text-lg">
+                            <li class="flex items-start"><i class="fas fa-microchip text-primary w-6 mt-1"></i><span class="ml-4"><strong class="font-semibold text-light">Processor:</strong> Intel i5 6700 or AMD Ryzen 5 7640HS</span></li>
+                            <li class="flex items-start"><i class="fas fa-memory text-primary w-6 mt-1"></i><span class="ml-4"><strong class="font-semibold text-light">Memory:</strong> 2 GB RAM</span></li>
+                            <li class="flex items-start"><i class="fas fa-tv text-primary w-6 mt-1"></i><span class="ml-4"><strong class="font-semibold text-light">Graphics:</strong> NVIDIA GTX 1050 Ti or AMD RX 570</span></li>
+                            <li class="flex items-start"><i class="fab fa-windows text-primary w-6 mt-1"></i><span class="ml-4"><strong class="font-semibold text-light">OS:</strong> Windows 10 (64-bit)</span></li>
+                            <li class="flex items-start"><i class="fas fa-hdd text-primary w-6 mt-1"></i><span class="ml-4"><strong class="font-semibold text-light">Storage:</strong> 2 GB available space</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-gray-800 p-8 rounded-lg border-2 border-secondary">
+                        <h2 class="font-orbitron text-3xl font-bold mb-6 text-secondary">Recommended Specs</h2>
+                        <p class="text-gray-400 mb-6">For a smooth experience at 1080p/1440p with high settings.</p>
+                        <ul class="space-y-4 text-lg">
+                            <li class="flex items-start"><i class="fas fa-microchip text-secondary w-6 mt-1"></i><span class="ml-4"><strong class="font-semibold text-light">Processor:</strong> Intel i7 11700k or AMD Ryzen 9600X</span></li>
+                            <li class="flex items-start"><i class="fas fa-memory text-secondary w-6 mt-1"></i><span class="ml-4"><strong class="font-semibold text-light">Memory:</strong> 4 GB RAM</span></li>
+                            <li class="flex items-start"><i class="fas fa-tv text-secondary w-6 mt-1"></i><span class="ml-4"><strong class="font-semibold text-light">Graphics:</strong> NVIDIA RTX 3080 or AMD Radeon RX 6800 XT</span></li>
+                            <li class="flex items-start"><i class="fab fa-windows text-secondary w-6 mt-1"></i><span class="ml-4"><strong class="font-semibold text-light">OS:</strong> Windows 11 (64-bit)</span></li>
+                            <li class="flex items-start"><i class="fas fa-hdd text-secondary w-6 mt-1"></i><span class="ml-4"><strong class="font-semibold text-light">Storage:</strong> 2 GB available space (SSD Recommended)</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-gray-900">
+            <div class="container mx-auto px-4 max-w-4xl">
+                <h2 class="font-orbitron text-4xl font-bold text-center mb-12">Additional Notes</h2>
+                <div class="space-y-6 text-gray-300">
+                    <p><strong class="text-light">Internet Connection:</strong> An internet connection is required for online multiplayer, tournament participation, and receiving game updates.</p>
+                    <p><strong class="text-light">Controller Support:</strong> Full controller support is included. We recommend using a controller for the best gameplay experience.</p>
+                    <p><strong class="text-light">macOS & Linux:</strong> While official support is for Windows, the game may run on other platforms via compatibility layers like Proton, but performance is not guaranteed.</p>
+                    <p><strong class="text-light">Integrated Graphics:</strong> The game is not recommended for play on integrated graphics cards (e.g., Intel HD/UHD Graphics). A dedicated graphics card is required for a stable frame rate.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray py-8">
+        <div class="container mx-auto text-center text-gray-400">
+            <p class="text-gray-500 text-sm">© 2024 Paddle Ball 3D. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="sketch.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
