@@ -1,230 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About - Paddle Ball 3D</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Orbitron:wght@500;700&display=swap">
-  <style>
-    :root {
-      --primary: #0066ff;
-      --primary-dark: #0052cc;
-      --secondary: #ff6b00;
-      --secondary-dark: #e05e00;
-      --dark: #121212;
-      --light: #f8f9fa;
-      --gray: #2d2d2d;
-      --success: #28a745;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Montserrat', sans-serif;
-      line-height: 1.6;
-      color: var(--light);
-      background: linear-gradient(135deg, var(--dark) 0%, var(--gray) 100%);
-      min-height: 100vh;
-    }
-
-    h1, h2, h3, h4 {
-      font-family: 'Orbitron', sans-serif;
-      letter-spacing: 1px;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-      transition: all 0.3s ease;
-    }
-
-    /* Navbar */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: rgba(0, 0, 0, 0.8);
-      padding: 1.5rem 2rem;
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 1000;
-      backdrop-filter: blur(10px);
-    }
-
-    .logo {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--primary);
-      text-shadow: 0 0 10px rgba(0, 102, 255, 0.5);
-    }
-
-    .logo span {
-      color: var(--secondary);
-    }
-
-    .navbar ul {
-      list-style: none;
-      display: flex;
-      gap: 2rem;
-    }
-
-    .navbar a {
-      color: var(--light);
-      font-weight: 600;
-      position: relative;
-      padding: 0.5rem 0;
-    }
-
-    .navbar a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background-color: var(--secondary);
-      transition: width 0.3s ease;
-    }
-
-    .navbar a:hover::after {
-      width: 100%;
-    }
-
-    .menu-toggle {
-      display: none;
-      cursor: pointer;
-      font-size: 1.5rem;
-    }
-
-    @media (max-width: 768px) {
-      .navbar ul {
-        position: fixed;
-        top: 80px;
-        left: -100%;
-        width: 100%;
-        height: calc(100vh - 80px);
-        background: var(--dark);
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 3rem;
-        transition: left 0.5s ease;
-      }
-      .navbar ul.active {
-        left: 0;
-      }
-      .menu-toggle {
-        display: block;
-      }
-    }
-
-    /* Section & Card Styles */
-    section {
-      padding: 6rem 2rem;
-      margin-top: 80px; /* account for fixed navbar */
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-      position: relative;
-    }
-
-    .section-title::after {
-      content: '';
-      display: block;
-      width: 80px;
-      height: 4px;
-      background: linear-gradient(to right, var(--primary), var(--secondary));
-      margin: 1rem auto;
-      border-radius: 2px;
-    }
-
-    .game-card {
-      background: rgba(30, 30, 30, 0.8);
-      border-radius: 15px;
-      padding: 3rem;
-      max-width: 800px;
-      margin: 0 auto;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(5px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      text-align: center;
-    }
-
-    /* Footer */
-    footer {
-      background: rgba(0, 0, 0, 0.8);
-      padding: 3rem 2rem;
-      text-align: center;
-      margin-top: 3rem;
-    }
-
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin: 2rem 0;
-    }
-
-    .copyright {
-      color: #aaa;
-      font-size: 0.9rem;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Paddle Ball 3D</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Custom Tailwind configuration
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Montserrat', 'sans-serif'],
+                        'orbitron': ['Orbitron', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#0066ff',
+                        'primary-dark': '#0052cc',
+                        secondary: '#ff6b00',
+                        'secondary-dark': '#e05e00',
+                        dark: '#121212',
+                        light: '#f8f9fa',
+                        gray: {
+                            DEFAULT: '#2d2d2d',
+                            '800': '#1f1f1f',
+                            '900': '#121212'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
+<body class="bg-dark text-light font-sans">
 
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="logo">Paddle <span>Ball 3D</span></div>
-    <ul id="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="screenshots.html">Screenshots</a></li>
-      <li><a href="purchase.html">Purchase</a></li>
-      <li><a href="news.html">News</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-    <div class="menu-toggle" id="mobile-menu">
-      <i class="fas fa-bars"></i>
-    </div>
-  </nav>
+    <!-- Header/Navbar -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-gray-900/80 backdrop-blur-sm border-b border-gray">
+        <div class="container mx-auto flex justify-between items-center p-4">
+            <div class="font-orbitron text-2xl font-bold">
+                <a href="index.html" class="text-primary">Paddle <span class="text-secondary">Ball 3D</span></a>
+            </div>
+            
+            <nav class="hidden md:flex space-x-8">
+                <a href="index.html" class="hover:text-secondary">Home</a>
+                <a href="about.html" class="text-secondary font-bold">About</a>
+                <a href="Store.html" class="hover:text-secondary">Store</a>
+                <a href="Requirements.html" class="hover:text-secondary">Requirements</a>
+                <a href="Reviews.html" class="hover:text-secondary">Reviews</a>
+                <a href="contact.html" class="hover:text-secondary">Contact</a>
+            </nav>
 
-  <!-- About Section -->
-  <section id="about">
-    <h2 class="section-title">About Paddle Ball 3D</h2>
-    <div class="game-card">
-      <p>Paddle Ball 3D is brought to you by Alfred Games, a passionate indie game studio focused on creating immersive and challenging experiences. Inspired by the classic Pong game, Paddle Ball 3D takes the simple, beloved mechanics of paddleball and expands them into a fully 3D, vibrant environment filled with exciting new features and challenges.</p>
-      <p>Whether you're playing against AI or challenging your friends, Paddle Ball 3D offers something for everyone. Our goal is to create fun and memorable gaming moments for players of all skill levels.</p>
-    </div>
-  </section>
+            <button id="mobile-menu" class="md:hidden"><i class="fas fa-bars text-2xl"></i></button>
+        </div>
+        
+        <div id="nav-links" class="hidden md:hidden bg-gray-900">
+             <a href="index.html" class="block text-center py-4 text-lg hover:bg-primary">Home</a>
+             <a href="about.html" class="block text-center py-4 text-lg bg-primary font-bold">About</a>
+             <a href="Store.html" class="block text-center py-4 text-lg hover:bg-primary">Store</a>
+             <a href="Requirements.html" class="block text-center py-4 text-lg hover:bg-primary">Requirements</a>
+             <a href="Reviews.html" class="block text-center py-4 text-lg hover:bg-primary">Reviews</a>
+             <a href="contact.html" class="block text-center py-4 text-lg hover:bg-primary">Contact</a>
+        </div>
+    </header>
 
-  <!-- Footer -->
-  <footer>
-    <div class="logo">Paddle <span>Ball 3D</span></div>
-    <div class="footer-links">
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms of Service</a>
-      <a href="#">Support</a>
-      <a href="#">Press Kit</a>
-    </div>
-    <p class="copyright">© 2024 Paddle Ball 3D. All rights reserved.</p>
-  </footer>
+    <main class="pt-16">
+        <!-- Page Header -->
+        <section class="relative bg-gray-900 py-20 overflow-hidden">
+            <div id="p5-canvas-container" class="absolute top-0 left-0 w-full h-full z-0"></div>
+            <div class="container mx-auto text-center relative z-10">
+                <h1 class="font-orbitron text-5xl font-bold text-light">About The Project</h1>
+                <p class="text-lg text-gray-400 mt-2">The minds (and machines) behind Paddle Ball 3D</p>
+            </div>
+        </section>
 
-  <script>
-    // Mobile menu toggle
-    document.getElementById('mobile-menu').addEventListener('click', function() {
-      document.getElementById('nav-links').classList.toggle('active');
-    });
-  </script>
+        <section class="py-20">
+            <div class="container mx-auto px-4 max-w-4xl text-center">
+                <h2 class="font-orbitron text-3xl font-bold mb-4 text-primary">Our Story</h2>
+                <p class="text-gray-300 leading-relaxed">
+                    Alfred Games is a passionate indie game studio focused on creating immersive and challenging experiences. Inspired by the classic Pong game, Paddle Ball 3D takes the simple, beloved mechanics of paddleball and expands them into a fully 3D, vibrant environment filled with exciting new features and challenges. We believe in the power of simple concepts evolved with modern technology to create something truly special.
+                </p>
+            </div>
+        </section>
+        
+        <section class="py-20 bg-gray-900">
+            <div class="container mx-auto px-4 max-w-4xl text-center">
+                <h2 class="font-orbitron text-3xl font-bold mb-4 text-secondary">Our Mission</h2>
+                <p class="text-gray-300 leading-relaxed">
+                    Our goal is to create fun and memorable gaming moments for players of all skill levels. We are committed to building games that are easy to learn but hard to master, providing endless hours of competitive fun and replayability. This project leverages both human creativity and cutting-edge AI to deliver a unique and polished experience.
+                </p>
+            </div>
+        </section>
+
+        <section class="py-20">
+            <div class="container mx-auto px-4">
+                <h2 class="font-orbitron text-4xl font-bold text-center mb-12">Meet the Team</h2>
+                <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <div class="bg-gray p-6 rounded-lg text-center transform transition-transform hover:-translate-y-2 lg:col-span-3">
+                         <div class="flex flex-col sm:flex-row items-center text-center sm:text-left gap-6">
+                            <div class="w-32 h-32 rounded-full flex-shrink-0 bg-secondary flex items-center justify-center border-4 border-secondary">
+                                <span class="font-orbitron text-5xl font-bold text-white">SA</span>
+                            </div>
+                            <div>
+                                <h4 class="font-orbitron text-2xl font-bold">Stephen Alfred</h4>
+                                <p class="text-secondary font-semibold">Lead Developer & Project Director</p>
+                                <p class="text-gray-400 mt-2 text-sm">The visionary and coding mastermind behind the project, orchestrating both human and AI contributions to bring Paddle Ball 3D to life.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray p-6 rounded-lg text-center transform transition-transform hover:-translate-y-2" aria-label="AI system">
+                        <div class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-primary flex items-center justify-center p-2">
+                             <svg class="w-full h-full text-white" role="img" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M22.2819 9.88895C22.4823 10.9653 22.0121 12.0883 21.0934 12.6935L14.0373 16.8192C13.1186 17.4243 11.9439 17.4243 11.0252 16.8192L3.96911 12.6935C3.05036 12.0883 2.58018 10.9653 2.78063 9.88895L4.54133 1.54519C4.74178 0.468832 5.70019 -0.163354 6.72089 0.0498341L13.0623 1.942C13.4939 2.04859 13.887 2.26178 14.2045 2.56152L17.7371 5.6457C18.4022 6.22416 18.4022 7.21925 17.7371 7.79771L14.2045 10.8819C13.887 11.1816 13.4939 11.3948 13.0623 11.5014L6.72089 13.3936C5.70019 13.6068 4.74178 12.9746 4.54133 11.8982L2.78063 3.55444C2.58018 2.47809 3.05036 1.35507 3.96911 0.749917L11.0252 4.87563C11.9439 5.48078 13.1186 5.48078 14.0373 4.87563L21.0934 0.749917C22.0121 0.144764 22.4823 1.26778 22.2819 2.34414L20.5212 10.6879C20.3207 11.7642 19.3623 12.3964 18.3416 12.1832L12.0002 10.291C11.5686 10.1844 11.1755 9.97123 10.858 9.67149L7.32542 6.58731C6.66033 6.00885 6.66033 5.01376 7.32542 4.4353L10.858 1.35112C11.1755 1.05138 11.5686 0.838189 12.0002 0.731595L18.3416 2.62378C19.3623 2.83697 20.3207 2.20478 20.5212 1.12843L22.2819 9.88895Z"/></svg>
+                        </div>
+                        <h4 class="font-orbitron text-xl font-bold">ChatGPT-4o</h4>
+                        <p class="text-primary font-semibold">Core Logic & Strategy</p>
+                        <p class="text-gray-400 mt-2 text-sm">Handles core code logic, documentation, and strategic planning.</p>
+                    </div>
+
+                    <div class="bg-gray p-6 rounded-lg text-center transform transition-transform hover:-translate-y-2" aria-label="AI system">
+                        <div class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-secondary flex items-center justify-center p-2">
+                             <svg class="w-full h-full text-white" role="img" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 12C2 16.9706 6.02944 21 11 21C15.9706 21 20 16.9706 20 12C20 7.02944 15.9706 3 11 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M22 12C22 7.02944 17.9706 3 13 3C8.02944 3 4 7.02944 4 12C4 16.9706 8.02944 21 13 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                        </div>
+                        <h4 class="font-orbitron text-xl font-bold">Suno & ElevenLabs</h4>
+                        <p class="text-secondary font-semibold">Creative Audio</p>
+                        <p class="text-gray-400 mt-2 text-sm">Generates immersive soundtracks and dynamic voiceovers.</p>
+                    </div>
+
+                    <div class="bg-gray p-6 rounded-lg text-center transform transition-transform hover:-translate-y-2">
+                        <div class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-light bg-gray-800 flex items-center justify-center">
+                            <span class="font-orbitron text-5xl font-bold text-white">ET</span>
+                        </div>
+                        <h4 class="font-orbitron text-xl font-bold">Evan Torraville</h4>
+                        <p class="text-light font-semibold">Gametester</p>
+                        <p class="text-gray-400 mt-2 text-sm">Provided critical feedback and bug reports to ensure a polished gameplay experience.</p>
+                    </div>
+
+                </div>
+                <div class="text-center mt-12">
+                    <p class="text-gray-500 text-sm">
+                        <strong>Additional AI collaborators:</strong> OpenAI o-series (o1-mini → o4-mini) for specialised reasoning tasks; DeepSeek R1 for open-source research workflows.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray py-8">
+        <div class="container mx-auto text-center text-gray-400">
+            <div class="font-orbitron text-2xl font-bold mb-4">
+                <a href="index.html" class="text-primary">Paddle <span class="text-secondary">Ball 3D</span></a>
+            </div>
+            <div class="flex flex-wrap justify-center space-x-6 mb-4">
+                <a href="about.html" class="hover:text-secondary">About Us</a>
+                <a href="Store.html" class="hover:text-secondary">Store</a>
+                <a href="Requirements.html" class="hover:text-secondary">Requirements</a>
+                <a href="Reviews.html" class="hover:text-secondary">Reviews</a>
+                <a href="contact.html" class="hover:text-secondary">Contact</a>
+                <a href="#" class="hover:text-secondary">Privacy Policy</a>
+                <a href="#" class="hover:text-secondary">Terms of Service</a>
+                <a href="#" class="hover:text-secondary">Support</a>
+                <a href="#" class="hover:text-secondary">Press Kit</a>
+            </div>
+            <p class="text-gray-500 text-sm">© 2024 Paddle Ball 3D. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- p5.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <!-- Your custom p5.js sketch -->
+    <script src="sketch.js"></script>
+    <!-- Your main script file -->
+    <script src="script.js"></script>
 </body>
 </html>
