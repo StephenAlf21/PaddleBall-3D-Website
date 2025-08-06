@@ -12,6 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Anime.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script>
         // Custom Tailwind configuration
         tailwind.config = {
@@ -71,7 +73,7 @@
     </header>
 
     <main class="pt-16">
-        <section class="relative bg-gray-900 py-20 overflow-hidden">
+        <section class="relative bg-gray-900 py-20 overflow-hidden fade-in-section">
             <div id="p5-canvas-container" class="absolute top-0 left-0 w-full h-full z-0"></div>
             <div class="container mx-auto text-center relative z-10">
                 <h1 class="font-orbitron text-5xl font-bold text-light">System Requirements</h1>
@@ -79,7 +81,7 @@
             </div>
         </section>
 
-        <section class="py-20">
+        <section class="py-20 fade-in-section">
             <div class="container mx-auto px-4">
                 <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
                     
@@ -110,7 +112,7 @@
             </div>
         </section>
 
-        <section class="py-20 bg-gray-900">
+        <section class="py-20 bg-gray-900 fade-in-section">
             <div class="container mx-auto px-4 max-w-4xl">
                 <h2 class="font-orbitron text-4xl font-bold text-center mb-12">Additional Notes</h2>
                 <div class="space-y-6 text-gray-300">
