@@ -288,4 +288,44 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // --- Projects Modal Logic ---
+    const openProjectsModalBtn = document.getElementById('open-projects-modal-btn');
+    const closeProjectsModalBtn = document.getElementById('close-projects-modal-btn');
+    const projectsModal = document.getElementById('projects-modal');
+    const projectsModalContent = document.getElementById('projects-modal-content');
+
+    if (openProjectsModalBtn && projectsModal) {
+        openProjectsModalBtn.addEventListener('click', () => {
+            projectsModal.classList.remove('hidden');
+            anime({
+                targets: projectsModalContent,
+                scale: [0.95, 1],
+                opacity: [0, 1],
+                duration: 300,
+                easing: 'easeOutQuad'
+            });
+        });
+    }
+
+    if (closeProjectsModalBtn && projectsModal) {
+        const closeProjectsModal = () => {
+            anime({
+                targets: projectsModalContent,
+                scale: [1, 0.95],
+                opacity: [1, 0],
+                duration: 300,
+                easing: 'easeInQuad',
+                complete: () => {
+                    projectsModal.classList.add('hidden');
+                }
+            });
+        };
+        closeProjectsModalBtn.addEventListener('click', closeProjectsModal);
+        projectsModal.addEventListener('click', (e) => {
+            if (e.target === projectsModal) {
+                closeProjectsModal();
+            }
+        });
+    }
 });
