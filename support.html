@@ -61,12 +61,40 @@
             </div>
         </section>
 
-        <!-- FAQ Section -->
+        <!-- FAQ & Updates Section -->
         <section class="py-20 fade-in-section">
-            <div class="container mx-auto px-4 max-w-4xl">
-                <h2 class="font-orbitron text-4xl font-bold text-center mb-12 text-primary">Frequently Asked Questions</h2>
-                <div class="space-y-4" id="faq-container">
-                    <!-- FAQ items will be inserted here by script.js -->
+            <div class="container mx-auto px-4 grid lg:grid-cols-3 gap-12">
+                <!-- FAQ Section -->
+                <div class="lg:col-span-2">
+                    <h2 class="font-orbitron text-4xl font-bold mb-8 text-primary">Frequently Asked Questions</h2>
+                    <div class="space-y-4" id="faq-container">
+                        <!-- FAQ items will be inserted here by script.js -->
+                    </div>
+                </div>
+                <!-- Latest Updates Section -->
+                <div class="lg:col-span-1">
+                     <div class="bg-gray-800 p-8 rounded-lg sticky top-24">
+                        <h2 class="font-orbitron text-3xl font-bold mb-6 text-secondary">Latest Updates</h2>
+                        <div class="space-y-6">
+                            <div>
+                                <h3 class="font-bold text-light">Version 0.8.19.13</h3>
+                                <p class="text-xs text-gray-500 mb-2">August 5, 2025</p>
+                                <ul class="list-disc list-inside text-gray-300 text-sm space-y-1">
+                                    <li>Fixed a bug causing the ball to occasionally pass through paddles.</li>
+                                    <li>Improved AI opponent difficulty scaling.</li>
+                                    <li>Added 3 new paddle skins to unlock.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-light">Version 0.8.19.12</h3>
+                                <p class="text-xs text-gray-500 mb-2">July 28, 2025</p>
+                                <ul class="list-disc list-inside text-gray-300 text-sm space-y-1">
+                                    <li>Adjusted power-up spawn rates in Special Modes.</li>
+                                    <li>Enhanced visual effects for the 'Fireball' power-up.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -76,17 +104,17 @@
             <div class="container mx-auto px-4">
                 <h2 class="font-orbitron text-4xl font-bold text-center mb-12 text-secondary">Quick Guides</h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-gray p-6 rounded-lg text-center">
+                    <div class="bg-gray p-6 rounded-lg text-center transform transition-transform hover:-translate-y-2">
                         <i class="fas fa-gamepad text-secondary text-4xl mb-4"></i>
                         <h3 class="font-orbitron text-2xl font-bold mb-2">Controls</h3>
                         <p class="text-gray-300">Master the controls for both keyboard and controller to dominate the arena.</p>
                     </div>
-                    <div class="bg-gray p-6 rounded-lg text-center">
+                    <div class="bg-gray p-6 rounded-lg text-center transform transition-transform hover:-translate-y-2">
                         <i class="fas fa-users text-secondary text-4xl mb-4"></i>
                         <h3 class="font-orbitron text-2xl font-bold mb-2">Multiplayer</h3>
                         <p class="text-gray-300">Learn how to set up local and online matches to challenge your friends.</p>
                     </div>
-                    <div class="bg-gray p-6 rounded-lg text-center">
+                    <div class="bg-gray p-6 rounded-lg text-center transform transition-transform hover:-translate-y-2">
                         <i class="fas fa-star text-secondary text-4xl mb-4"></i>
                         <h3 class="font-orbitron text-2xl font-bold mb-2">Power-ups</h3>
                         <p class="text-gray-300">Discover all the power-ups and how to use them to your advantage.</p>
